@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="head"/>
+<style>
+    h4 ,.h4{font-weight: 900;}
+</style>
+<body>
+
+<br/>
+
+<div class="container">
+
+    <div th:fragment="page-head">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/upline">首页</a></li>
+                    <li role="presentation"><a href="/history">历史</a></li>
+                    <li role="presentation"><a href="/logout">退出</a></li>
+                    <li role="presentation" id="restart"><a href="javascript:void(0);" onclick="restart();">重启</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">TYCJ UPLINE</h3>
+        </div>
+    </div>
+    <div class="jumbotron">
+
+        <h1>成教非运营项目上线</h1>
+        <p class="lead">本项目旨在让开发人员能够：花更多时间编写代码和保证质量；接收有关其代码质量的反馈；不手写linux命令上线</p>
+        <form id="upline_form" class="form-horizontal"  enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">项目</label>
+                <div class="col-sm-10">
+
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="manager"/> manager
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="learning"/> learning
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="center"/> center
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="learnspace"/> learnspace
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="workspace"/> workspace
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio6" value="wechat"/> wechat
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">上线包</label>
+                <div class="col-sm-10">
+                    <input type="file" id="inputPassword3" name="file"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-default" onclick="ajaxSubmitForm();">开始更新</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="row marketing">
+        <div class="col-lg-6">
+            <h4>非侵入式</h4>
+            <p>保持原项目结构不变，不做任何代码上的修改，部署完本项目即可使用.</p>
+
+            <h4>热插拔</h4>
+            <p>本项目基于spring-boot开发，以java -jar启动、停止项目.</p>
+
+            <h4>零影响</h4>
+            <p>可以任何时候开启停止，且对原项目不产生任何影响.</p>
+        </div>
+
+        <div class="col-lg-6">
+            <h4>全备份</h4>
+            <p>每次更新上线的文件，都有相应的备份.</p>
+
+            <h4>回滚快</h4>
+            <p>上线代码发现有问题怎么办？别着急，本项目提供回滚功能，只需点击两个按钮即可.</p>
+
+            <h4>穿网络</h4>
+            <p>项目部署在客户服务器，只开放了一个端口，怎麼办？别担心，本项目一经部署，随时可以访问，只要可以访问网络，用手机都可以上线，无需xshell辅助.</p>
+        </div>
+    </div>
+
+    <blockquote class="blockquote-reverse">
+        <p>你的负担将变成礼物，你的苦将照亮你的路。</p>
+        <footer><cite title="Source Title">泰戈尔</cite></footer>
+    </blockquote>
+
+    <footer class="footer">
+        <p th:fragment="page-foot">copyRight 2017 whaty.</p>
+    </footer>
+
+</div> <!-- /container -->
+
+
+</body>
+</html>

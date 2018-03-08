@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="head"/>
+<body>
+<br/>
+<div class="container">
+    <div th:include="upline :: page-head"></div>
+
+    <div class="jumbotron">
+
+        <h1>上线记录</h1>
+        <p class="lead">If you were a teardrop;In my eye, For fear of losing you,I would never cry. And if the golden sun,
+            Should cease to shine its light, Just one smile from you,Would make my whole world bright.</p>
+        <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>-->
+        <div id="div1"></div>
+
+    </div>
+
+
+    <blockquote class="blockquote-reverse">
+        <p>人生需要留白，残荷缺月也是一种美丽，粗茶淡饭也是一种幸福。</p>
+        <footer><cite title="Source Title">林徽因</cite></footer>
+    </blockquote>
+
+    <footer class="footer">
+        <p th:include="upline :: page-foot"></p>
+    </footer>
+
+</div> <!-- /container -->
+
+</body>
+</html>

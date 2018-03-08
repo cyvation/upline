@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="head"/>
+
+<body>
+<br/>
+<div class="container login_container">
+
+    <form class="form-signin" name="form" th:action="@{/login}" action="/login" method="post" onsubmit = "return checkUser();" >
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input  id="inputEmail" class="form-control" placeholder="User" name="username"/>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"/>
+        <div th:if="${param.error}">
+            <label for="inputPassword" class="sr-only">用户名或密码错</label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+
+</div> <!-- /container -->
+
+
+</body>
+</html>

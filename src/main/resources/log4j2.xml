@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--启动项设置为 trace，加载 springboot 启动内部各种详细输出-->
+<Configuration status="info">
+    <Appenders>
+        <!--添加一个控制台追加器-->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout>
+                <pattern>[%-5p] %d %c - %m%n</pattern>
+            </PatternLayout>
+        </Console>
+        <!--添加一个文本追加器，文件位于根目录下，名为log.log-->
+        <File name="File" fileName="log.log">
+            <PatternLayout>
+                <pattern>[%-5p] %d %c - %m%n</pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.github" level="error" />
+        <!--记录 com.java2e.springboot 包及其子包 debug 及其以上的记录，并输出到文件中-->
+        <Logger name="com.java2e.springboot" level="error">
+            <!-- AppenderRef 可以控制文件输出对象-->
+            <AppenderRef ref="File" />
+        </Logger>
+        <!--根记录全部输出到控制台上-->
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

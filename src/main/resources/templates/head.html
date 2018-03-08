@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>up line</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/js/treeGrid/css/TreeGrid.css}"></link>
+    <link rel="stylesheet" th:href="@{/js/treeGrid/css/demo.css}"></link>
+    <link rel="stylesheet" th:href="@{/js/bootstrap/css/bootstrap.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/js/bootstrap/css/bootstrap-theme.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/style.css}"></link>
+</head>
+<script th:src="@{/jquery-1.11.1.min.js}"></script>
+<script th:src="@{/jquery.cookie.js}"></script>
+<script th:src="@{/jquery.md5.js}"></script>
+<script th:src="@{/jquery.form.js}"></script>
+<script th:src="@{/js/treeGrid/application.js}"></script>
+<script th:src="@{/js/treeGrid/TreeGrid.js}"></script>
+<script th:src="@{/js/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/layer/layer.js}"></script>
+<script>
+
+    function restart() {
+        layer.confirm('您确认要重启服务器吗？', {
+            btn: ['是', '否']
+        }, function () {
+            layer.msg('准备重启，请稍后', {icon: 1});
+            layer.open({
+                type: 2,
+                title: '后台重启信息',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['400px', '90%'],
+                content: '/reply' //iframe的url
+            });
+        }, function () {
+
+        });
+    }
+
+    function ajaxSubmitForm() {
+        var option = {
+            url: '/upline.do',
+            type: 'POST',
+            dataType: 'json',
+            headers: {"ClientCallMode": "ajax"}, //添加请求头部
+            success: function (data) {
+                if (data.success) {
+                    layer.msg('文件更新成功。', {icon: 1});
+                }else{
+                    layer.msg(data.error, {icon: 1});
+                }
+            },
+            error: function (data) {
+                layer.msg('文件更新失败。', {icon: 1});
+            }
+        };
+        $("#upline_form").ajaxSubmit(option);
+        return false; //最好返回false，因为如果按钮类型是submit,则表单自己又会提交一次;返回false阻止表单再次提交
+    }
+
+    function revert(url){
+        layer.confirm('您确认要回滚至'+url+'吗？', {
+            btn: ['是', '否']
+        }, function () {
+            $.ajax({
+                type:'get',
+                url:url,
+                dataType: 'json',
+                success:function (data) {
+                    if (data.success) {
+                        layer.msg('回滚成功。', {icon: 1});
+                    }else{
+                        layer.msg(data.error, {icon: 1});
+                    }
+                },
+                error:function () {
+                    layer.msg('回滚失败。', {icon: 1});
+                }
+            });
+        }, function () {
+
+        });
+
+    }
+
+    function checkUser(){
+        var  loginId = $('#inputEmail').val();
+        var pwd = $('#inputPassword').val();
+        var remember = $('#remember');
+        var cookiePwd = $.cookie("pwd");
+        if(loginId == ""  ){
+            alert("用户名不能为空");
+            return false;
+        }
+        if(pwd == ""  ){
+            alert("密码不能为空");
+            return false;
+        }
+
+    }
+
+
+</script>
+</html>
